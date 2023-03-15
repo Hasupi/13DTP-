@@ -1,6 +1,6 @@
 from flask import Flask, render_template
-import sqlalchemy
-
+import sqlite3
+from prisma import prisma
 
 app = Flask(__name__)
 

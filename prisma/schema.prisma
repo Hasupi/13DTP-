@@ -1,0 +1,29 @@
+datasource db {
+    provider = "sqlite"
+    url = "file:twitter-clone.db"
+}
+
+generator client {
+  provider             = "prisma-client-py"
+  interface            = "sync"
+  recursive_type_depth = 5
+}
+
+model User {
+  id    Int     @id @unique @default(autoincrement())
+  email String  @unique
+  name  String?
+  tweets Tweet[]
+}
+
+model Tweet {
+  id Int @id @default(autoincrement())
+  user_id Int
+  user User @relation(fields: [user_id], references: [id])
+  tweet String
+  date DateTime
+}
+
+model Following {
+  id Int @id @default(autoincrement())
+}

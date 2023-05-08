@@ -1,8 +1,17 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 import sqlite3
-from prisma import prisma
+from prisma import Prisma, register
+from __init__ import app, login_manager
+from user import UserClass
+from flask_login import login_user, logout_user, login_required
+from prisma.models import User
 
-app = Flask(__name__)
+@login_manager.user_loader
+def user_loader(user_id):
+    user = User.prisma().find_first(where={
+        'id' : int(user_id)
+    })
+    return UserClass(user.__dict__)
 
 
 @app.route("/")
@@ -16,6 +25,24 @@ def main():
 @app.route("/about")
 def about():
     return render_template("about.html", title="About")
+
+@app.route("/login")
+def login():
+    user_data = User.prisma().find_first(
+        where={
+            'name' : 'Shane'
+        }
+    )
+    print(user_data)
+    user = UserClass(user_data.__dict__)
+    login_user(user)
+    return render_template("login.html")
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
 
 @app.errorhandler(404)
 def die(e):

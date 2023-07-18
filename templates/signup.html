@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Register</h1>
+<body>
+    <p>help me</p>
+    <form method="POST" action="/signup">
+        {{form.username}}
+        {{form.email}}
+        {{form.password}}
+        {{form.submit}}
+        {{form.csrf_token}}
+    </form>
+</body>
+{% endblock %}

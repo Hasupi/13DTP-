@@ -1,24 +1,12 @@
-h1 {
-    text-align: center;
+/* h1 {
+    font-size: 20px;
 }
-
-.nav {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-li {
-    display: inline;
-    float: left;
-}
-
-a {
-    display: block;
-    padding: 8px;
+input {
+    border-color: black;
 }
 
 body {
-    background-color: #14171A;
-    color: white;
-}
+    background-image: conic-gradient(at 50% 50%,#561BBE 15deg, #FA8792 30deg, #70E6FB 45deg, #FBF8B3);
+    background-repeat: no-repeat;
+    background-size: cover;
+} */

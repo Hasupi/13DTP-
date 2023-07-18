@@ -13,7 +13,8 @@ model User {
   id    Int     @id @unique @default(autoincrement())
   email String  @unique
   name  String?
-  tweets Tweet[]
+  password String
+  posts Tweet[]
 }
 
 model Tweet {

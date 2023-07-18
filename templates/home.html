@@ -1,11 +1,24 @@
 {% extends "layout.html" %}
 {% block content %}
-<header><h1></h1></header>
-<div class="home">
-    <h1 class="home">Fun</h1>
-</div>
-<body>
-    <p>lol</p>
-</body>
+<div class="flex justify-center">
+    <body>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ut eros vel nulla elementum luctus sit amet in arcu. Etiam eu augue sed sapien congue posuere. Aenean orci erat, gravida at leo finibus, molestie porta felis. Cras fermentum ex a erat dictum consectetur. Quisque at mauris consectetur augue efficitur tristique eget nec ante. Morbi ut ipsum orci. Etiam interdum sem quis tempor iaculis. Proin quis nunc ac ante consectetur feugiat eget a ipsum. Nunc venenatis felis felis, at accumsan velit auctor ut. Donec facilisis pharetra eros sed fringilla. Phasellus vestibulum, mi eget fringilla efficitur, est velit maximus lorem, id dignissim tellus neque et erat. Proin sit amet tellus lectus. Praesent sit amet dui ex. Duis vel magna sed leo interdum venenatis. In vitae tellus vel tellus mattis cursus. Vivamus tristique justo aliquam odio faucibus blandit.
 
+            Proin vitae dui sed libero dignissim rutrum vel ut eros. Donec et massa congue, consectetur lacus non, laoreet mauris. Etiam mollis nibh turpis, ac aliquam lacus condimentum eu. Cras fermentum nisi quis eleifend dapibus. Mauris diam nibh, maximus id magna eget, iaculis eleifend quam. Sed sit amet auctor libero, sed sagittis risus. Ut auctor elit sed quam tristique mattis. Sed lacus mi, volutpat sed lacus non, posuere viverra turpis. Integer faucibus vehicula massa vehicula bibendum. Sed et malesuada neque. Nunc ac efficitur enim.
+            
+            Praesent vel nunc odio. Sed vestibulum, ante vel ultrices auctor, turpis massa faucibus odio, sed congue turpis risus vitae ipsum. Sed cursus lectus orci, at tempor magna efficitur non. Aenean non consectetur dolor. Donec semper interdum tellus non posuere. Nullam ut eros sit amet magna commodo facilisis. Sed efficitur tempus enim a dapibus. Pellentesque sodales fermentum nisi, ultrices rutrum nunc. Nulla tincidunt nulla ut lorem cursus aliquet. Vivamus tempor mi vel elit maximus, vel accumsan sem facilisis. Praesent tristique rutrum magna, id efficitur dolor elementum id.
+            
+            Aenean ac massa erat. Vivamus tortor libero, iaculis in dictum id, mollis quis nunc. Nunc eget lorem vitae metus elementum tempor a sed nunc. Cras dignissim non tortor id lobortis. Mauris et est eget nunc auctor gravida. Integer rutrum arcu arcu, ut convallis ante maximus sed. Donec quis enim blandit, ultricies sem sit amet, blandit lacus. In hac habitasse platea dictumst. Curabitur ante tortor, vehicula et eros in, laoreet tempus massa. Aliquam sit amet aliquet eros. Duis luctus id libero at congue. In hac habitasse platea dictumst. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum sapien magna, gravida vel malesuada vitae, varius nec elit. In bibendum eros non nunc porta, rhoncus dictum sem cursus.
+            
+            Aenean a nunc a nibh porttitor placerat lobortis ut purus. Sed accumsan mi vitae lorem dignissim convallis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin convallis augue ac enim rhoncus fringilla. Vestibulum finibus facilisis tincidunt. Nam tellus ante, aliquet condimentum lectus sed, congue ullamcorper elit. Ut ornare tincidunt sem sed sollicitudin. Quisque et ante sed quam ultricies bibendum ac quis neque. Phasellus faucibus porttitor risus, ut viverra arcu tempus eu. Donec volutpat risus ipsum, id viverra orci faucibus non. Pellentesque faucibus vulputate porttitor. Nullam vitae augue ut sem luctus laoreet non et enim. Mauris feugiat tortor magna, at pretium sapien tempor sed. Proin lacinia interdum maximus.      
+            </p>
+        
+
+
+    </body>
+</div>
+{% for user in user %}
+    <li>{{user}}</li>
+{% endfor %}
 {% endblock %}

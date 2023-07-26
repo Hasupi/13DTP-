@@ -5,6 +5,7 @@ from flask_login import login_user, logout_user, login_required
 from wtforms import StringField, validators, PasswordField, SubmitField
 from prisma import models
 from flask_wtf import FlaskForm
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 app.config["SECRET_KEY"] = 'totally_secret_key'
@@ -17,9 +18,15 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('Submit')
 
 
+class LoginForm(FlaskForm):
+    username = StringField('Username')
+    password = PasswordField('Password')
+    submit = SubmitField("Submit")
+
+
 @login_manager.user_loader
 def user_loader(user_id):
-    user = User.prisma().find_first(where={
+    user = models.User.prisma().find_first(where={
         'id': int(user_id)
     })
     if not user:
@@ -47,26 +54,22 @@ def about():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    class LoginForm(FlaskForm):
-        username = StringField('Username')
-        password = PasswordField('Password')
-        submit = SubmitField("Submit")
     form = LoginForm()
 
     if form.validate_on_submit():
-        # Login and validate the user.
-        # user should be an instance of your `User` class
-        # return redirect('/')
-        login_user(User)
-
-        Flask.flash('Logged in successfully.')
-
-        next = Flask.request.args.get('next')
-        # url_has_allowed_host_and_scheme should check if the url is safe
-        # for redirects, meaning it matches the request host.
-        # See Django's url_has_allowed_host_and_scheme for an example.
-        if not url_has_allowed_host_and_scheme(next, request.host):
-            return Flask.abort(400)
+        user = models.User.prisma().find_first(
+            where={
+                'name': form.username.data
+            }
+        )
+        user = User(user.__dict__)
+        if check_password_hash(
+            user.password,
+            form.password.data,
+        ):
+            login_user(user)
+        else:
+            print("no")
 
         return redirect(next or Flask.url_for('/'))
     return render_template('login.html', form=form)
@@ -83,10 +86,14 @@ def logout():
 def register():
     form = RegistrationForm()
     if request.method == 'POST' and form.validate():
+        password = generate_password_hash(
+            form.password.data
+        )
         models.User.prisma().create(
             data={
                 'name': form.username.data,
-                'password': form.password.data,
+                'password': password,
+                'email': form.email.data,
             }
         )
     return redirect(url_for('signup'))

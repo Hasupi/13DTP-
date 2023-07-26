@@ -5,6 +5,7 @@ class User(UserMixin):
     def __init__(self, user_data) -> None:
         self.user_id = user_data['id']
         self.email = user_data['email']
+        self.password = user_data['password']
 
     def get_id(self):
         return self.user_id
